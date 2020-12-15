@@ -1,15 +1,15 @@
 package br.com.easynvest.checkout
 class Checkout{
-    def call (jenkins, jobParams) {
+    def call (jenkins) {
         jenkins.echo "Checkout Step"
 
         def gitVars = jenkins.checkout([
                 $class: 'GitSCM',
-                branches: [[name: jobParams.repoBranch]],
+                branches: [[name: jenkins.env.REPO_BRANCH]],
                 doGenerateSubmoduleConfigurations: false,
                 extensions: [[
                     $class: 'LocalBranch',
-                    localBranch: jobParams.repoBranch
+                    localBranch: jenkins.env.REPO_BRANCH
                 ], [
                     $class: 'CleanBeforeCheckout'
                 ], [
@@ -21,7 +21,7 @@ class Checkout{
                     timeout: 10
                 ]], 
                 submoduleCfg: [],
-                userRemoteConfigs: [[url: jobParams.repoUrl]]
+                userRemoteConfigs: [[url: jenkins.env.REPO_URL]]
             ])
 
         jenkins.env.GIT_COMMIT = "${gitVars.GIT_COMMIT}"
