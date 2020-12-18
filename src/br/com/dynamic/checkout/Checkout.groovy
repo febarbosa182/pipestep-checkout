@@ -1,4 +1,4 @@
-package br.com.easynvest.checkout
+package br.com.dynamic.checkout
 class Checkout{
     def call (jenkins) {
         jenkins.echo "Checkout Step"
