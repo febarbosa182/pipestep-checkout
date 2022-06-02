@@ -1,4 +1,5 @@
-package br.com.dynamic.checkout
+package dynamic.checkout
+
 class Checkout{
     def call (jenkins) {
         jenkins.echo "Checkout Step"
